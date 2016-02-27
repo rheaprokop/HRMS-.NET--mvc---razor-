@@ -1,0 +1,139 @@
+﻿@model IEnumerable<HRMS.Models.Candidate>
+@{
+    ViewBag.Title = "Index";
+}
+
+@if(TempData["color"] != null)
+{
+<div class="box grid_16">
+    <div class="toggle_container">
+        <div class="block">
+            <div class="section"> 
+                <div class="alert dismissible alert_@TempData["color"]">
+                    <img height="24" width="24" src="~/Content/Images/icons/small/white/facebook_like.png">
+                   @TempData["result"]
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+
+
+<div class="box grid_16 tabs">
+    <ul id="touch_sort" class="tab_header clearfix">
+        <li><a href="#tabs-1">Available</a></li>
+        <li><a href="#tabs-2">Hiring Process<span>(no pagination)</span></a></li>
+        <li><a href="#tabs-3">Blocked Candidate</a></li>
+    </ul>
+    <div class="controls">
+        <a href="#" class="grabber"></a>
+        <a href="#" class="toggle"></a>
+    </div>
+    <div class="toggle_container">
+        <div id="tabs-1" class="block">
+            <div id="dt2">
+                <table class=" datatable">
+                    <thead>
+                        <tr>
+                            <th>Candidate Name</th>
+                            <th>Email Address</th>
+                            <th>Contact</th>
+                            <th>Status</th>
+                            <th style="width:10%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var candidate in Model)
+                        {
+                        <tr class="gradeX">
+                            <td>@candidate.Title @candidate.Firstname @candidate.Lastname</td>
+                            <td>@candidate.Email</td>
+                            <td>@candidate.Telephone</td>
+                            <td class="center">@candidate.Status</td>
+                            <td class="center">  
+                                <span class="button tiny light">
+                               @Html.ActionLink("View", "View", new { id = candidate.CandidateID  }, new { @class = "ui-icon ui-icon-zoomout" })  
+                                </span>
+                                <span class="button tiny light">
+                               @Html.ActionLink("Delete", "Delete", new { id = candidate.CandidateID  }, new { @class = "deleteLink ui-icon ui-icon-trash" })  
+                                </span>
+                                <span class="button tiny light">
+                               @Html.ActionLink("Update", "Update", new { id = candidate.CandidateID  }, new { @class = "ui-icon ui-icon-pencil" })  
+                                </span>
+                            </td>
+                        </tr> 
+                        }
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+        <div id="tabs-2" class="block">
+            <div class="section">
+                <p>Information about the Table can go here, or another table could go here or pretty much anything could go here!</p>
+            </div>
+        </div>
+        <div id="tabs-3" class="block">
+            <div class="section">
+                <p>Information about the Table can go here, or another table could go here or pretty much anything could go here!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 
+
+<div class="display_none">
+                <div id="confirm-delete" class="dialog_content narrow no_dialog_titlebar" title="Delete Confirmation">
+                    <div class="block">
+                        <div class="section">
+                            <h1>Delete File</h1>
+                            <div class="dashed_line"></div>
+                            <p>Please confirm that you want to delete this record.</p>
+                        </div>
+                        @*<div class="button_bar clearfix">
+                            <button class="delete_confirm dark red no_margin_bottom close_dialog">
+                                <div class="ui-icon ui-icon-check"></div>
+                                <span>Sure</span>
+                            </button>
+                            <button class="light send_right close_dialog">
+                                <div class="ui-icon ui-icon-closethick"></div>
+                                <span>Cancel</span>
+                            </button>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+
+<script>
+    $(document).ready(function () {
+        $("#confirm-delete").dialog({
+            autoOpen: false,
+            modal: true,
+            resizable: false,
+            height: 180,
+        });
+
+        $(".deleteLink").click(function (e) {
+            e.preventDefault();
+            var targetUrl = $(this).attr("href");
+
+            $("#confirm-delete").dialog({
+                buttons: {
+                    "Confirm": function () {
+                        window.location.href = targetUrl;
+                    },
+                    "Cancel": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+            $("#confirm-delete").dialog("open");
+        });
+
+    });
+
+</script>

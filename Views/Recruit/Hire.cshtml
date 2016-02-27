@@ -1,0 +1,165 @@
+﻿@model HRMS.Models.Opening
+@{
+    ViewBag.Title = "Hire";
+}
+
+<div class="box grid_16 tabs">
+    <ul class="tab_header clearfix">
+        <li><a href="#tabs-1">Job Opening</a></li>
+        <li><a href="#tabs-2">Hiring Process</a></li>
+        <li><a href="#tabs-3">Add or Assign PIC</a></li>
+    </ul>
+    <div class="controls">
+        <a href="#" class="grabber"></a>
+        <a href="#" class="toggle"></a>
+        <a href="#" class="show_all_tabs"></a>
+    </div>
+    <div class="toggle_container">
+        <div id="tabs-1" class="block">
+
+            <h2 class="section">Job Opening</h2>
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "validate_form" }))
+            {
+            <fieldset class="label_side label_small top">
+                <label for="text_field_inline">Position</label>
+                <div>
+                     @Html.TextBoxFor(m => m.JobTitle, new { @id = "required_fname", @class = "required" })
+                </div>
+            </fieldset>
+
+            <fieldset class="label_top">
+                <label for="text_field_inline">Job Description</label>
+                <div>
+                    @Html.TextAreaFor(m => m.JobDesc, new { @id = "tiny_input", @class = " required" })
+                </div>
+            </fieldset>
+            <div class="columns clearfix">
+                <div class="col_50">
+                    <fieldset class="label_side label_small top">
+                        <label for="text_field_inline">Location</label>
+                        <div>
+                             @Html.TextBoxFor(m => m.Location, new { @id = "required_fname", @class = "required" })
+                            <div class="required_tag"></div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col_50">
+                    <fieldset class="label_side label_small top right">
+                        <label for="text_field_inline">Emp Type</label>
+                        <div>
+                             @Html.TextBoxFor(m => m.EmplType, new { @id = "required_fname", @class = "required" })
+                            <div class="required_tag"></div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+                <div class="button_bar clearfix">
+                    <button class="dark" type="submit">
+                        <img src="images/icons/small/white/mail.png">
+                        <span>Send</span>
+                    </button>
+                    <button class="light send_right" type="reset">
+                        <span>Reset</span>
+                    </button>
+                </div>
+            }
+
+        </div>
+        <div id="tabs-2" class="block">
+            <div class="columns clearfix">
+                <div class="col_100">
+                    <fieldset class="bottom">
+                        <label>Modify the selection process for this opening. </label>
+                        <div>
+                            <select class="multisorter indent" multiple="multiple" style="height: 230px;">
+                                <option>Red</option>
+                                <option>Green</option>
+                                <option selected="selected">Blue</option>
+                                <option>Cyan</option>
+                                <option>Magenta</option>
+                                <option selected="selected">Yellow</option>
+                                <option>Black</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="tabs-3" class="block">
+            <div class="columns clearfix">
+                <div class="col_100">
+                    <h2 class="box_head  grad_green">Regular Table with Form Inputs</h2>
+                    <table class="static">
+                        <thead>
+                            <tr>
+                                <th>Column 1</th>
+                                <th>Column 2</th>
+                                <th>Column 3</th>
+                                <th>Column 4</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" /></td>
+                                <td>
+                                    <input type="text" /></td>
+                                <td>
+                                    <input type="text" /></td>
+                                <td>
+                                    <input type="text" /></td>
+                                <td>
+                                    <button class="div_icon">
+                                        <div class="ui-icon ui-icon-plusthick"></div>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Trident</td>
+                                <td>Internet
+										 Explorer 4.0</td>
+                                <td>Win 95+</td>
+                                <td>4</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Trident</td>
+                                <td>Internet
+										 Explorer 5.0</td>
+                                <td>Win 95+</td>
+                                <td>5</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Trident</td>
+                                <td>Internet
+										 Explorer 5.5</td>
+                                <td>Win 95+</td>
+                                <td>5.5</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Trident</td>
+                                <td>Internet
+										 Explorer 6</td>
+                                <td>Win 98+</td>
+                                <td>6</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Trident</td>
+                                <td>Internet Explorer 7</td>
+                                <td>Win XP SP2+</td>
+                                <td>7</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

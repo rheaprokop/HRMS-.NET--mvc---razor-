@@ -1,0 +1,69 @@
+﻿@model HRMS.Models.Opening
+@{
+    ViewBag.Title = "Create";
+}
+ 
+
+<div class="box grid_16 tabs">
+     <h2 class="box_head">Form Elements</h2>
+        <div class="controls">
+            <a href="#" class="grabber"></a>
+            <a href="#" class="toggle"></a>
+        </div>
+    <div class="controls">
+        <a href="#" class="grabber"></a>
+        <a href="#" class="toggle"></a>
+        <a href="#" class="show_all_tabs"></a>
+    </div>
+    <div class="toggle_container">
+
+            <h2 class="section">Job Opening</h2>
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "validate_form" }))
+            {
+            <fieldset class="label_side label_small top">
+                <label for="text_field_inline">Position</label>
+                <div>
+                     @Html.TextBoxFor(m => m.JobTitle, new { @id = "required_fname", @class = "required" })
+                </div>
+            </fieldset>
+
+            <fieldset class="label_top">
+                <label for="text_field_inline">Job Description</label>
+                <div>
+                    @Html.TextAreaFor(m => m.JobDesc, new { @id = "tiny_input", @class = " required" })
+                </div>
+            </fieldset>
+            <div class="columns clearfix">
+                <div class="col_50">
+                    <fieldset class="label_side label_small top bottom">
+                        <label for="text_field_inline">Location</label>
+                        <div>
+                             @Html.TextBoxFor(m => m.Location, new { @id = "required_fname", @class = "required" })
+                            <div class="required_tag"></div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col_50">
+                    <fieldset class="label_side label_small top right bottom">
+                        <label for="text_field_inline">Emp Type</label>
+                        <div>
+                             @Html.TextBoxFor(m => m.EmplType, new { @id = "required_fname", @class = "required" })
+                            <div class="required_tag"></div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+                <div class="button_bar clearfix">
+                    <button class="dark" type="submit">
+                        <img src="images/icons/small/white/mail.png">
+                        <span>Send</span>
+                    </button>
+                    <button class="light send_right" type="reset">
+                        <span>Reset</span>
+                    </button>
+                </div>
+            }
+         
+    </div>
+</div>
+ 

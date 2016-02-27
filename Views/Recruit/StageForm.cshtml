@@ -1,0 +1,39 @@
+﻿@model HRMS.Models.Stage
+@{
+    ViewBag.Title = "CreateStage";
+}
+  
+<div class="box grid_12">
+    <h2 class="box_head">Set Stages for Hiring Process</h2>
+    <div class="controls">
+        <a href="#" class="grabber"></a>
+        <a href="#" class="toggle"></a>
+    </div>
+    <div class="block">
+
+
+        <table class="static">
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "validate_form" }))
+                {
+                    <tr>
+                        <td>
+                        @Html.TextBoxFor(m => m.Desc, new { @id = "required_desc", @class = "required" })
+                        <td>
+                            <button class="div_icon">
+                                <div class="ui-icon ui-icon-plusthick"></div>
+                            </button>
+                        </td>
+                    </tr>
+                                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

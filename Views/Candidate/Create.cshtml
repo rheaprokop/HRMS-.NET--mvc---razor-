@@ -1,0 +1,111 @@
+﻿@model HRMS.Models.Candidate
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "validate_form", enctype = "multipart/form-data" }))
+{
+
+    <div class="box grid_16">
+        <h2 class="box_head">Form Elements</h2>
+        <div class="controls">
+            <a href="#" class="grabber"></a>
+            <a href="#" class="toggle"></a>
+        </div>
+        <div class="toggle_container">
+            <div class="block">
+                 <h2 class="section">Candidate Information</h2>
+                <div class="columns">
+                    <div class="col_100">
+                        <div class="col_40 no_border_left">
+                            <fieldset>
+                                <label>Given Name</label>
+                                <div class="clearfix">
+                                    @Html.TextBoxFor(m => m.Firstname, new { @id = "required_fname", @class = "required" })
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col_40">
+                            <fieldset>
+                                <label>Surname</label>
+                                <div class="clearfix">
+                                    @Html.TextBoxFor(m => m.Lastname, new { @id = "required_lname", @class = "required" })
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col_20">
+                            <fieldset>
+                                <label>Title</label>
+                                <div class="clearfix">
+                                    @Html.TextBoxFor(m => m.Title)
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col_25">
+                            <fieldset class="bottom">
+                                <label>Email Address</label>
+                                <div class="clearfix">
+                                    @Html.TextBoxFor(m => m.Email, new { @id = "required_email", @class = "required email" })
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col_25">
+                            <fieldset class="bottom">
+                                <label>Telephone</label>
+                                <div class="clearfix">
+                                    @Html.TextBoxFor(m => m.Telephone, new { type = "number", @id = "required_1d", @class = "required" })
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col_25">
+                            <fieldset class="right bottom">
+                                <label for="file_upload">Upload CV</label>
+                                <div class="clearfix">
+                                    <input type="file" name="cvfile" id="fileupload" class="uniform">
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col_25">
+                            <fieldset class="bottom">
+                                <label>Status</label>
+                                <div class="clearfix">
+                                    @Html.DropDownListFor(m => m.Status, new SelectList(
+                              new List<Object>{ 
+                                   new { id = 0 , status = "Please select One"  }, 
+                                   new { id = 1 , status = "In File" },
+                                   new { id = 2 , status = "For Interview" },
+                                   new { id = 3 , status = "Offer Sent"}
+                                },
+                              "id",
+                              "status",
+                              0), new { @class = "uniform full_width" })
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="col_100">
+                        <fieldset class="label_top top">
+                            <label for="text_field_inline">A Short Description</label>
+                            <div>
+                                @Html.TextAreaFor(m => m.ShortDesc)
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+
+                <div class="button_bar clearfix">
+                    <button class="light send_right" type="reset">
+                        <span>Reset</span>
+                    </button>
+                    <button class="dark" type="submit">
+                        <img src="images/icons/small/white/mail.png">
+                        <span>Save Profile</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,137 @@
+﻿@model IEnumerable<HRMS.Models.Stage>
+@{
+    ViewBag.Title = "Stage";
+} 
+
+@if(TempData["color"] != null)
+{
+<div class="box grid_16">
+    <div class="toggle_container">
+        <div class="block">
+            <div class="section"> 
+                <div class="alert dismissible alert_@TempData["color"]">
+                    <img height="24" width="24" src="~/Content/Images/icons/small/white/facebook_like.png">
+                   @TempData["result"]
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+<div class="grid_12 box clearfix">
+    <div class="indented_button_bar clearfix">
+        <a href="@Url.Action("StageForm", "Recruit")" class="button blue send_right">
+            <span>Create New Stage</span>
+        </a> 
+    </div>
+</div>
+<div class="box grid_12">
+    <h2 class="box_head">Set Stages for Hiring Process</h2>
+    <div class="controls">
+        <a href="#" class="grabber"></a>
+        <a href="#" class="toggle"></a>
+    </div>
+    <div class="block">
+        <table class="static" id="mytable">
+            <tbody>
+                @foreach (var stage in Model)
+                {
+                    <tr style="height: 70px;">
+                        <td style="width: 1%; vertical-align: middle" class="customerIDCell">@stage.StageID</td>
+                        <td style="width: 70%; vertical-align: middle">@stage.Desc</td>
+                        <td style="width: 30%; vertical-align: middle">
+                           @Html.HiddenFor(model => stage.StageID)
+                            <span class="button light"><a href="#" class="up  uplink">
+                                <img src="~/Content/Images/icons/small/grey/bended_arrow_up.png" /></a></span>
+                            <span class="button light"><a href="#" class="down uplink">
+                                <img src="~/Content/Images/icons/small/grey/bended_arrow_down.png" /></a></span>
+                            <span class="button light">
+                                @Html.ActionLink("UpdateStage", "UpdateStage", new { id = stage.StageID }, new { @class = "ui-icon ui-icon-pencil" })
+                            </span>
+                            <span class="button light">
+                                @Html.ActionLink("DeleteStage", "DeleteStage", new { id = stage.StageID }, new { @class = "deleteLink ui-icon ui-icon-trash" })
+                            </span>
+                        </td>
+                    </tr> 
+                 }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<input type="hidden" id="myField" value="" />
+
+<div class="display_none">
+                <div id="confirm-delete" class="dialog_content narrow no_dialog_titlebar" title="Delete Confirmation">
+                    <div class="block">
+                        <div class="section">
+                            <h1>Delete File</h1>
+                            <div class="dashed_line"></div>
+                            <p>Please confirm that you want to delete this record.</p>
+                        </div>
+                         
+                    </div>
+                </div>
+            </div>
+ 
+<script>
+    $(document).ready(function () {
+        
+        $(".up,.down").click(function () {
+            var row = $(this).parents("tr:first");
+            if ($(this).is(".up")) {
+                row.insertBefore(row.prev());
+            } else {
+                row.insertAfter(row.next());
+            }
+        });
+
+        $("#confirm-delete").dialog({
+            autoOpen: false,
+            modal: true,
+            resizable: false,
+            height: 180,
+        });
+
+        $(".deleteLink").click(function (e) {
+            e.preventDefault();
+            var targetUrl = $(this).attr("href");
+
+            $("#confirm-delete").dialog({
+                buttons: {
+                    "Confirm": function () {
+                        window.location.href = targetUrl;
+                    },
+                    "Cancel": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+            $("#confirm-delete").dialog("open");
+        });
+
+          
+        jQuery('.uplink').on('click', function () {
+            var items = [], options = [];
+
+            //Iterate all td's in second column
+            $('#mytable>tbody>tr>td:nth-child(1)').each(function () {
+                //add item to array
+                items.push($(this).text());
+            });
+
+            //restrict array to unique items
+            var items = items; 
+            window.location.href = "UpdateStageSeq?seq=" + items;
+        });
+       
+
+    });
+
+
+</script>
+
+
